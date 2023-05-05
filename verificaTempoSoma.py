@@ -11,28 +11,39 @@ def somaFor(n):
     return soma
 
 def somaProgressaoAritmetica(n):
-    return ((1 + n) * 100) / 2
+    return ((1 + n) * n) / 2
 
-#Is there another way?
+def somaListComprehension(n):
+    return sum([x for x in range(1, n+1)])
 
 n = 1000000000
-loop = 1000
+loop = 1
 
-resultado = timeit.timeit('somaProgressaoAritmetica(n)', globals=globals(), number=loop)
-tempo = resultado / loop
-print(f"{tempo:.9f}" )
+for func_name in ('somaPython', 'somaFor', 'somaProgressaoAritmetica', 'somaListComprehension'):
+    resultado = timeit.timeit(f'{func_name}(n)', globals=globals(), number=loop)
+    tempo = resultado / loop
+    print(f"{func_name}: {tempo:.9f}")
 
-#Somar 100 numeros (1 a 100)
-#test1 = 0.000001039
-#test2 = 0.000003183
-#test3 = 0.000000121
+#Somar 1000 numeros (1 a 1000)
+#somaPython: 0.000013544
+#somaFor: 0.000043404
+#somaProgressaoAritmetica: 0.000000169
+#somaListComprehension: 0.000036279
 #
 #Somar 100.000 numeros (1 a 100.000)
-#test1 = 0.001928083
-#test2 = 0.003756276
-#test3 = 0.000000136
+#somaPython: 0.002243874
+#somaFor: 0.004769934
+#somaProgressaoAritmetica: 0.000000188
+#somaListComprehension: 0.005715858
 #
 #Somar 1.000.000 numeros (1 a 1.000.000)
-#test1 = 0.028677143
-#test2 = 0.039949356
-#test3 = 0.000000128
+#somaPython: 0.029584044
+#somaFor: 0.050592506
+#somaProgressaoAritmetica: 0.000000349
+#somaListComprehension: 0.082341479
+#
+#Somar 1.000.000.000 numeros (1 a 1.000.000)
+#somaPython: 30.258568400
+#somaFor: 55.474500000
+#somaProgressaoAritmetica: 0.000013500
+#somaListComprehension: Memory Error :p
