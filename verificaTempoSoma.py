@@ -2,19 +2,19 @@ import timeit
 
 ##Time to execute every approach to calculate the sum of 1 to n numbers
 def somaPython(n):
-    return sum(range(n+1))
+    return sum(range(n+1)) # The sum() = O(n)
 
 def somaFor(n):
-    soma = 0
-    for n in range(1, n+1):
+    soma = 0 # O(1)
+    for n in range(1, n+1): # O(n)
         soma = soma + n
     return soma
 
 def somaProgressaoAritmetica(n):
-    return ((1 + n) * n) / 2
+    return ((1 + n) * n) / 2 # O(1) constant cost
 
 def somaListComprehension(n):
-    return sum([x for x in range(1, n+1)])
+    return sum([x for x in range(1, n+1)]) # O(n)
 
 n = 1000000000
 loop = 1
